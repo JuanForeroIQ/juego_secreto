@@ -1,5 +1,5 @@
-let numeroSecreto;
-let intentos;
+let numeroSecreto = 0;
+let intentos = 0;
 let listaNumerosSorteados = [];
 let numeroMaximo = 10;
 
@@ -50,11 +50,19 @@ function limpiarCaja(){
 function generarNumeroSecreto() {
     let numeroGenerado = Math.floor(Math.random()*numeroMaximo) + 1;
 
-    if (listaNumerosSorteados.includes(numeroGenerado)) {
-        return generarNumeroSecreto();
+    if (listaNumerosSorteados.length == numeroMaximo) {
+        
+        asignarTextoElemento('p','Ya se sortearon todos los números posibles');
+        
     } else {
-        listaNumerosSorteados.push(numeroGenerado);
-        return numeroGenerado;
+        
+        if (listaNumerosSorteados.includes(numeroGenerado)) {
+            return generarNumeroSecreto();
+        } else {
+            listaNumerosSorteados.push(numeroGenerado);
+            return numeroGenerado;
+        }
+        
     }
    
 }
